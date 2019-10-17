@@ -1,4 +1,4 @@
-package controller;
+package com.hotelsunshine.hotelsunshine.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -12,24 +12,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import models.Cliente;
-import services.ClienteService;
+import com.hotelsunshine.hotelsunshine.models.Cliente;
+import com.hotelsunshine.hotelsunshine.services.ClienteService;
 
 @RestController
-@RequestMapping(value = "/clientes")
 public class ClienteResource {
 	
 	@Autowired
 	private ClienteService service;
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/clientes", method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Cliente obj) {
 		obj = service.insertCliente(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/clientes", method = RequestMethod.GET)
 	public ResponseEntity<List<Cliente>> findAll() {
 		List<Cliente> lista = service.findClienteAll();
 		return ResponseEntity.ok().body(lista);

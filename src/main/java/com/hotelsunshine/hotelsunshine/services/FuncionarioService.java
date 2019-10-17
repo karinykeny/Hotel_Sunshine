@@ -1,4 +1,4 @@
-package services;
+package com.hotelsunshine.hotelsunshine.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import models.Funcionario;
-import repositorios.FuncionarioRepositorio;
-import services.exceptions.ObjectNotFoundException;
+import com.hotelsunshine.hotelsunshine.models.Funcionario;
+import com.hotelsunshine.hotelsunshine.repositorios.FuncionarioRepositorio;
+import com.hotelsunshine.hotelsunshine.services.exceptions.ObjectNotFoundException;
 
 
 @Service

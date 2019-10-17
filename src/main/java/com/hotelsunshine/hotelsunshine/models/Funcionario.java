@@ -1,4 +1,4 @@
-package models;
+package com.hotelsunshine.hotelsunshine.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,41 +8,47 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
-public class Cliente implements Serializable {
-
+public class Funcionario implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotNull
 	private String nome;
-	@CPF
+	@CPF(message="CPF inválido, digite novamente")
 	private String cpf;
 	@Email
 	private String email;
+	@Length(min = 6, max = 8, message = "deve conter de 6 a 8 caracteres!")
 	private String senha;
-	@OneToMany(mappedBy = "cliente")
+	private String telefone;
+	@OneToMany(mappedBy = "funcionario")
+	private List<Cliente> clientes = new ArrayList<>();
+	@OneToMany(mappedBy = "funcionario")
 	private List<Reserva> reservas = new ArrayList<>();
-	@ManyToOne
-	private Funcionario funcionario;
 
-	public Cliente() {
+	public Funcionario() {
 
 	}
 
-	public Cliente(Integer id, String nome, String cpf, String email, String senha) {
+	public Funcionario(Integer id, String nome, String cpf, String email, String senha, String telefone) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
 		this.senha = senha;
+		this.telefone = telefone;
 	}
 
 	public Integer getId() {
@@ -85,27 +91,19 @@ public class Cliente implements Serializable {
 		this.senha = senha;
 	}
 
-	public List<Reserva> getReservas() {
-		return reservas;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
-	}
-
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 
@@ -117,11 +115,8 @@ public class Cliente implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		Funcionario other = (Funcionario) obj;
+		if (id != other.id)
 			return false;
 		return true;
 	}

@@ -1,4 +1,4 @@
-package services.exceptions;
+package com.hotelsunshine.hotelsunshine.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 	

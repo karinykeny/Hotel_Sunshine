@@ -1,4 +1,4 @@
-package controller;
+package com.hotelsunshine.hotelsunshine.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import models.Funcionario;
-import services.FuncionarioService;
+import com.hotelsunshine.hotelsunshine.models.Funcionario;
+import com.hotelsunshine.hotelsunshine.services.FuncionarioService;
 
 @RestController
 @RequestMapping(value = "/funcionarios")

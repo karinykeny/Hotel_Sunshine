@@ -1,4 +1,4 @@
-package exception;
+package com.hotelsunshine.hotelsunshine.exception;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import services.exceptions.ObjectNotFoundException;
+import com.hotelsunshine.hotelsunshine.services.exceptions.ObjectNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {

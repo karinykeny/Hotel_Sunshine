@@ -1,4 +1,4 @@
-package exception;
+package com.hotelsunshine.hotelsunshine.exception;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package models;
+package com.hotelsunshine.hotelsunshine.models;
 
 public enum StatusQuarto {
 	
